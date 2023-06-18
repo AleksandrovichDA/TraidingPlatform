@@ -33,6 +33,15 @@ main {
     margin: 20px;
 }
 
+.btn:hover {
+    background-color: #0056b3; /* Darken the button color slightly when hovered */
+}
+
+@media (max-width: 768px) {
+    /* Adjust styles for smaller screens */
+}
+
+
 /* Footer */
 footer {
     background-color: #007bff; /* This is a Bootstrap primary color */
