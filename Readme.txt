@@ -4,10 +4,10 @@ https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/main.
 JS к осноыному экран:
 https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/script.js
 
-основной экран:
+history экран:
 https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/history.html
 
-JS к осноыному экран:
+JS к history экран:
 https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/history.js
 
 Стили:
