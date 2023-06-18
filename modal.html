@@ -1,0 +1,66 @@
+<div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Add Position</h2>
+    <form id="addPositionForm">
+      <!-- Раздел Position -->
+      <h3>Position</h3>
+      <input type="hidden" id="idInput">
+      <label for="tokenInput">Token:</label>
+      <input type="text" id="tokenInput" required>
+      <label for="longShortInput">Long/Short:</label>
+      <select id="longShortInput" required>
+        <option value="Long">Long</option>
+        <option value="Short">Short</option>
+      </select>
+      <label for="accountInput">Account:</label>
+      <select id="accountInput" required>
+        <select id="accountInput">test_1</select>
+      </select>
+      <label for="marginInput">Margin, %:</label>
+      <input type="number" id="marginInput" min="0" max="100" step="5" required>
+      <label for="levInput">Lev. (spot/futures):</label>
+      <input type="number" id="levInput" min="1" max="100" step="1" value="1" required>
+      <label for="dateOpenInput">Date/Screen Open:</label>
+      <input type="text" id="dateOpenInput" required>
+      <label for="stopLossInput">SL (Stop-Loss):</label>
+      <input type="number" id="stopLossInput" required>
+      <label for="feesInput">Fees (Комиссии):</label>
+      <input type="text" id="feesInput">
+      <input type="hidden" id="statusInput" value="Draft">
+      <input type="hidden" id="exchangeInput" value="Bitget">
+
+      <!-- Раздел Entries -->
+      <h3>Entries</h3>
+      <table id="entriesTable">
+        <thead>
+          <tr>
+            <th>Entry value</th>
+            <th>Setup %</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Строки Entries будут добавляться динамически -->
+        </tbody>
+      </table>
+      <button type="button" id="addEntryBtn">+</button>
+
+      <!-- Раздел Target -->
+      <h3>Target</h3>
+      <table id="targetsTable">
+        <thead>
+          <tr>
+            <th>Target value</th>
+            <th>Setup %</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Строки Target будут добавляться динамически -->
+        </tbody>
+      </table>
+      <button type="button" id="addTargetBtn">+</button>
+
+      <button type="submit">Add</button>
+    </form>
+  </div>

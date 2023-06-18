@@ -1,0 +1,156 @@
+<style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .navbar {
+      background-color: #fff;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+    }
+
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .card-text {
+      margin-bottom: 5px;
+    }
+
+    .text-danger {
+      color: red;
+    }
+
+    table {
+      background-color: #fff;
+    }
+
+    th {
+      font-weight: bold;
+      background-color: #f1f1f1;
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background-color: #f8f9fa;
+    }
+
+     .modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  form {
+    margin-top: 20px;
+  }
+
+  h3 {
+    margin-top: 20px;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  /* Дополнительные стили для полей формы */
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  input[type="hidden"] {
+    display: none;
+  }
+
+  #addEntryBtn,
+  #addTargetBtn,
+  .removeEntryBtn,
+  .removeTargetBtn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .removeEntryBtn,
+  .removeTargetBtn {
+    background-color: #f44336;
+    margin-left: 5px;
+  }
+  </style>
