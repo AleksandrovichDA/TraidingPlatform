@@ -11,4 +11,4 @@ JS к history экран:
 https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/history.js
 
 Стили:
-https://github.com/AleksandrovichDA/TraidingPlatform/blob/master/styles.css
+https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/styles.css
