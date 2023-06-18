@@ -7,7 +7,7 @@ body {
 
 /* Header */
 header {
-    background-color: #007bff; /* This is a Bootstrap primary color */
+    background-color: #0056b3; /* This is a Bootstrap primary color */
     color: white;
     padding: 20px;
     text-align: center;
@@ -42,17 +42,6 @@ main {
 }
 
 
-/* Footer */
-footer {
-    background-color: #007bff; /* This is a Bootstrap primary color */
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
 /* Bootstrap Grid System Customization */
 .row {
     margin-bottom: 20px;
@@ -77,9 +66,6 @@ footer {
     padding: 20px;
 }
 
-/* Existing styles */
-/* ... */
-
 /* New styles for the table */
 table {
     width: 100%;
@@ -92,7 +78,7 @@ th, td {
     text-align: left;
 }
 th {
-    background-color: #007bff;
+    background-color: #0056b3; /* This matches the navigation color */
     color: white;
 }
 tr:nth-child(even) {
@@ -101,3 +87,4 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #ddd;
 }
+
