@@ -18,23 +18,18 @@ function loadHistoryData() {
         },
         // добавьте больше объектов для каждой строки
     ];
-    var tableBody = document.getElementById('historyTable').querySelector('tbody');
+     var tableBody = document.getElementById('historyTable').querySelector('tbody');
     data.forEach(function(rowData) {
         var row = document.createElement('tr');
-
         // Добавьте каждую ячейку в строку
         Object.entries(rowData).forEach(function([key, cellData]) {
             var cell = document.createElement('td');
             if (key === 'dateOpen' || key === 'dateClose') {
                 cell.setAttribute('colspan', '2');
             }
-            if (key === 'netProfitUSD' || key === 'netProfitPercent' || key === 'netProfitR') {
-                cell.setAttribute('colspan', '3');
-            }
             cell.textContent = cellData;
             row.appendChild(cell);
         });
-
         // Добавьте строку в таблицу
         tableBody.appendChild(row);
     });
