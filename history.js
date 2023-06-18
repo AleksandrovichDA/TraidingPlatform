@@ -1,85 +1,58 @@
 function loadHistoryData() {
-    // TODO: Замените этот код на вызов API или другой источник данных
+    // TODO: Replace this code with an API call or other data source
     var data = [
-        {
-            date: '01.2023',
-            token: 'BTC',
-            longShort: 'Long',
-            lev: '5x',
-            dateOpen: '01.01.2023',
-            dateClose: '01.02.2023',
-            entryAvg: '50000',
-            targetAvg: '60000',
-            marginUsed: '1000',
-            fees: '50',
-            netProfitUSD: '500',
-            netProfitPercent: '10',
-            netProfitR: '2',
-            exchange: 'Bitget'
+        { 
+            date: '01.2023', 
+            token: 'BTC', 
+            longShort: 'Long', 
+            lev: '5x', 
+            dateOpen: '01.01.2023', 
+            dateClose: '01.02.2023', 
+            entryAvg: '50000', 
+            targetAvg: '60000', 
+            marginUsed: '1000', 
+            fees: '50', 
+            netProfitUSD: '500', 
+            netProfitPercent: '10', 
+            netProfitR: '2', 
+            exchange: 'Bitget' 
         },
-        // добавьте больше объектов для каждой строки
+        // add more objects for each row
     ];
 
     var tableBody = document.getElementById('historyTable').querySelector('tbody');
 
     data.forEach(function(rowData) {
         var row = document.createElement('tr');
-        
-        // Добавьте каждую ячейку в строку
-        Object.values(rowData).forEach(function(cellData) {
+
+        // Add each cell to the row
+        var keys = Object.keys(rowData);
+        keys.forEach(function(key) {
             var cell = document.createElement('td');
-            cell.textContent = cellData;
+
+            // Check if the cell is a complex cell
+            if (key === 'date' || key === 'netProfit') {
+                var div = document.createElement('div');
+
+                // Add each subfield as a div within the td cell
+                rowData[key].forEach(function(subfield) {
+                    var subfieldDiv = document.createElement('div');
+                    subfieldDiv.textContent = subfield;
+                    div.appendChild(subfieldDiv);
+                });
+
+                cell.appendChild(div);
+            } else {
+                cell.textContent = rowData[key];
+            }
+
             row.appendChild(cell);
         });
 
-        // Добавьте строку в таблицу
+        // Add the row to the table
         tableBody.appendChild(row);
     });
 }
 
-function loadHistoryData() {
-    // TODO: Замените этот код на вызов API или другой источник данных
-    var data = [
-        {
-            date: '01.2023',
-            token: 'BTC',
-            longShort: 'Long',
-            lev: '5x',
-            dateOpen: '01.01.2023',
-            dateClose: '01.02.2023',
-            entryAvg: '50000',
-            targetAvg: '60000',
-            marginUsed: '1000',
-            fees: '50',
-            netProfitUSD: '500',
-            netProfitPercent: '10',
-            netProfitR: '2',
-            exchange: 'Bitget'
-        },
-        // добавьте больше объектов для каждой строки
-    ];
-
-    var tableBody = document.getElementById('historyTable').querySelector('tbody');
-
-    data.forEach(function(rowData) {
-        var row = document.createElement('tr');
-        
-        // Добавьте каждую ячейку в строку
-        Object.values(rowData).forEach(function(cellData) {
-            var cell = document.createElement('td');
-            cell.textContent = cellData;
-            row.appendChild(cell);
-        });
-
-        // Добавьте строку в таблицу
-        tableBody.appendChild(row);
-    });
-}
-
-// Загрузите данные при загрузке страницы
+// Load the data when the page loads
 window.addEventListener('load', loadHistoryData);
-
-
-// Загрузите данные при загрузке страницы
-window.addEventListener('load', loadHistoryData);
-
