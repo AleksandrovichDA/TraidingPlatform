@@ -79,13 +79,12 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.hide();
   });
 
-  // Remove Row
-  function removeRow(event) {
+window.removeRow = function(event) {
     const rowType = event.target.getAttribute("data-entry-type");
     const rowId = event.target.getAttribute(`data-${rowType}row`);
     const rowElement = document.getElementById(`${rowType}Row${rowId}`);
     rowElement.remove();
-  }
+}
 
   // Generate a GUID
   function generateGuid() {
