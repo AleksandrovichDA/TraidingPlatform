@@ -7,6 +7,42 @@
     <link rel="stylesheet" href="styles.css">
     <script src="history.js"></script>
 </head>
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+
+  <!-- Подключаем jQuery -->
+  <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  <!-- Подключаем DataTables JS -->
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready( function () {
+    var data = [ // Это ваш исходный массив данных
+      {
+        date: '01.2023',
+        token: 'BTC',
+        longShort: 'Long',
+        lev: '5x',
+        dateOpen: '01.01.2023',
+        dateClose: '01.02.2023',
+        entryAvg: '50000',
+        targetAvg: '60000',
+        marginUsed: '1000',
+        fees: '50',
+        netProfitUSD: '500',
+        netProfitPercent: '10',
+        netProfitR: '2',
+        exchange: 'Bitget'
+      },
+      // добавьте больше объектов для каждой строки
+    ];
+
+    $('#historyTable').DataTable({
+      data: data,
+      columns: Object.keys(data[0]).map(key => ({title: key, data: key}))
+    });
+  } );
+  </script>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,42 +68,7 @@
     </div>
   </nav>
     <div class="container">
-        <table id="historyTable">
-  <thead>
-    <tr>
-      <th>Date (MM.YYYY)</th>
-      <th>Token</th>
-      <th>Long/Short</th>
-      <th>Lev.</th>
-      <th colspan="2">Date</th>
-      <th>Entry AVG.</th>
-      <th>Target AVG.</th>
-      <th>Margin used</th>
-      <th>Fees</th>
-      <th colspan="3">NET PROFIT</th>
-      <th>Exchange</th>
-    </tr>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>Open</th>
-      <th>Close</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>USD</th>
-      <th>%</th>
-      <th>R</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Заполняется скриптом -->
-  </tbody>
-</table>
+         <table id="historyTable"></table>
     </div>
     <script src="history.js"></script>
 </body>
