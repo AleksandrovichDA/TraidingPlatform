@@ -23,13 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
     targetRowCount++;
   });
 
-  // Remove Row
-  function removeRow(event) {
-    const rowType = event.target.getAttribute("data-entry-type");
-    const rowId = event.target.getAttribute(`data-${rowType}row`);
-    const rowElement = document.getElementById(`${rowType}Row${rowId}`);
-    rowElement.remove();
-  }
 
   // Save Trade
   const saveTradeBtn = document.getElementById("saveTradeBtn");
@@ -85,6 +78,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = bootstrap.Modal.getInstance(document.getElementById("tradeModal"));
     modal.hide();
   });
+
+  // Remove Row
+  function removeRow(event) {
+    const rowType = event.target.getAttribute("data-entry-type");
+    const rowId = event.target.getAttribute(`data-${rowType}row`);
+    const rowElement = document.getElementById(`${rowType}Row${rowId}`);
+    rowElement.remove();
+  }
 
   // Generate a GUID
   function generateGuid() {
