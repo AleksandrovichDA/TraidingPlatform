@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://mintrud.gov.ru/work-related-electronic-document" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="edoc" xmlns:edoc="http://mintrud.gov.ru/work-related-electronic-document">
+	<xs:element name="wredcData">
+		<xs:annotation>
+			<xs:documentation>Данные электронного документа, связанного с работой</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Описание даных электронного документа, связанного с работой</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element name="content" type="edoc:emloyerinfoType" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Сведения о работодателе</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="signature" type="edoc:x509SignatureType" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Сведения об электронной подписи</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="id" use="required" type="edoc:uuidType">
+				<xs:annotation>
+					<xs:documentation>Идентификатор данных</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="created" use="optional" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата, на которою подаются сведения (дата создания сведений)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="version" use="required" fixed="1.0" type="edoc:version">
+				<xs:annotation>
+					<xs:documentation>Версия формата данных</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="docNameType">
+		<xs:annotation>
+			<xs:documentation>Наименование документа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="docNumberType">
+		<xs:annotation>
+			<xs:documentation>Номер документа</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fileExtentionType">
+		<xs:annotation>
+			<xs:documentation>Тип файла</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-z0-9]{3,6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="fileNameType">
+		<xs:annotation>
+			<xs:documentation>Имя файла с расширением</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[a-zA-Zа-яА-Я0-9_]{1,250}.[a-z0-9]{3,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="innType">
+		<xs:annotation>
+			<xs:documentation>ИНН</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{10}|\d{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="kppType">
+		<xs:annotation>
+			<xs:documentation>КРР</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ogrnType">
+		<xs:annotation>
+			<xs:documentation>ОГРН</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{13}|\d{15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="partPeopleFullNameType">
+		<xs:annotation>
+			<xs:documentation>Часть (фамия, имя или отчество) человека</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[а-яА-Я\-]{1,64}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="snilsType">
+		<xs:annotation>
+			<xs:documentation>СНИЛС</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{3}-\d{3}-\d{3} \d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="uuidType">
+		<xs:annotation>
+			<xs:documentation>Глобальный уникальный идентификатор</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\{?[0-9a-fA-F]{8}(-?[0-9a-fA-F]{4}){3}-?[0-9a-fA-F]{12}\}?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="version">
+		<xs:annotation>
+			<xs:documentation>Версия схемы данных электронного документа, связанного с работой</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="attachmentType">
+		<xs:annotation>
+			<xs:documentation>Приложение к электронному документу</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="file" type="edoc:fileNameType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Наименование файла приложения к электронному документу, связанному с работой</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="size" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Размер файла (байт)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="annotation" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Дополнительная информация (описание, коментарии)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="employersign" type="edoc:signatureWithPOA" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Электронная подпись работодателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="employeesign" type="edoc:signatureWithPOA" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Электронная подпись работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="extention" use="required" type="edoc:fileExtentionType">
+			<xs:annotation>
+				<xs:documentation>Расширение файла</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="docinfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о документе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="docName" type="edoc:docNameType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docNumber" type="edoc:docNumberType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Номер документа в учетной системе работодателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="date" type="xs:date" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Дата документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="docType" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Вид документа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="annotation" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Дополнительная текстовая информация (комментарий)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="file" type="edoc:fileNameType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Наименование файла электонного документа, связанного с работой</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="size" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Размер файла (байт)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="signature" type="edoc:signatureWithPOA" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения об электронной подписи электонного документа, связанного с работой со стороны работодателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="attachment" type="edoc:attachmentType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Приложение к электронному документу, связанному с работой</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="employeeinfo" type="edoc:employeeInfoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Сведения о работнике, подписавшем электронный документ, связанный с работой</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="emloyerinfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о работодателе</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="employername" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Наименование организации работодателя / ФИО индивидуального предпринимателя</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5"/>
+						<xs:maxLength value="512"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="innempoyer" type="edoc:innType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>ИНН организации работодателя</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ogrn" type="edoc:ogrnType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>В зависимости от организационно-правовой формы работодателя может принимать числовое значение в размере от 13 до 15 символов</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="kpp" type="edoc:kppType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>КПП работодателя. Обязательно для работодателей-юридических лиц</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="jobtitle" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Наименование должности (если она есть)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5"/>
+						<xs:maxLength value="512"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="docinfo" type="edoc:docinfoType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Сведения об электронном документе, связанном с работой</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="employeeInfoType">
+		<xs:annotation>
+			<xs:documentation>Сведения о работнике, подписавшем документ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="lastnameinfo" type="edoc:partPeopleFullNameType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Фамилия работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="firstnameinfo" type="edoc:partPeopleFullNameType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Имя работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="patronymicInfo" type="edoc:partPeopleFullNameType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Отчество работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="jobtitle" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Наименование должности работника (если она есть)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="signature" type="edoc:signatureWithPOA" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Сведения об электронной подписи электронного документа, связанного с работой со стороны работника</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="powerOfAttorneyType">
+		<xs:annotation>
+			<xs:documentation>Доверенность</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="file" type="edoc:fileNameType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Наименование файла, содержащего доверенность, которой подписан электронный документ, связанный с работой</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="size" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Размер файла (байт)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="powerOfAttorney" type="edoc:powerOfAttorneyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Доверенность, являющаяся основанием для выдачи этой доверенности</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="signatureType">
+		<xs:annotation>
+			<xs:documentation>Электронная подпись</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="date" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Дата подписания электронного документа, связанного с работой</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:date">
+						<xs:pattern value="\d{4}-(0?[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="snils" type="edoc:snilsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>СНИЛС сотрудника / работника, который подписал электронный документ или приложение к нему</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Данные электронной подписи</xs:documentation>
+				</xs:annotation>
+				<xs:element name="simple" type="xs:boolean" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Простая электронная подпись (признак наличия электронной подписи)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="x509" type="edoc:x509SignatureType" minOccurs="1" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Сведения о неквалифицированной или квалифицированной электронной подписи</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="signatureWithPOA">
+		<xs:annotation>
+			<xs:documentation>Электронная подпись, уполномоченная по доверенности</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="edoc:signatureType">
+				<xs:sequence>
+					<xs:element name="powerOfAttorney" type="edoc:powerOfAttorneyType" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation>Доверенность на право подписания</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="x509SignatureType">
+		<xs:annotation>
+			<xs:documentation>Сведения о файле-подписи</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="file" type="edoc:fileNameType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Наименование файла, содержащего электронную подпись</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="size" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Размер файла (байт)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
