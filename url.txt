@@ -1,5 +1,0 @@
-https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/mainTab.html
-https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/mainScriptTab.js
-https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/historyTab.html
-https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/historyScriptTab.js
-https://raw.githubusercontent.com/AleksandrovichDA/TraidingPlatform/master/stylesAllTab.css
